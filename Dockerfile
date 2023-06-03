@@ -1,9 +1,9 @@
 # Copied from https://github.com/prometheus/client_golang/blob/master/examples/simple/Dockerfile
 
-FROM public.ecr.aws/docker/library/golang:1.15-alpine AS builder
+FROM public.ecr.aws/docker/library/golang:1.20-alpine AS builder
 WORKDIR /go/src/github.com/infrastructure-as-code/docker-hello-world
 ENV GIN_MODE debug
-COPY Makefile *.go ./
+COPY .* * ./
 RUN apk update && \
 	apk upgrade && \
 	apk add \
