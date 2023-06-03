@@ -1,6 +1,6 @@
 # Copied from https://github.com/prometheus/client_golang/blob/master/examples/simple/Dockerfile
 
-FROM public.ecr.aws/docker/library/golang:1.15-alpline AS builder
+FROM public.ecr.aws/docker/library/golang:1.15-alpine AS builder
 WORKDIR /go/src/github.com/infrastructure-as-code/docker-hello-world
 ENV GIN_MODE debug
 COPY Makefile *.go ./
@@ -11,7 +11,7 @@ RUN apk update && \
   && \
 	make all
 
-FROM infrastructureascode/scratch
+FROM ghcr.io/vincetse/scratch
 LABEL maintainer "Vince Tse <vincetse@users.noreply.github.com>"
 COPY --from=builder /go/src/github.com/infrastructure-as-code/docker-hello-world/hello_world .
 ENV GIN_MODE release
