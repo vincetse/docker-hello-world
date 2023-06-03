@@ -57,5 +57,5 @@ func main() {
 	flag.Parse()
 
 	router := setupRouter(*optRoutePrefix)
-	_ := router.Run()
+	_ = router.Run()
 }
