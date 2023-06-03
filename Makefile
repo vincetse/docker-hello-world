@@ -11,5 +11,5 @@ lint:
 
 deps:
 	go get -u
-	go install github.com/stretchr/testify@v1.8.4
-	go install golang.org/x/lint/golint@latest
+	go get github.com/stretchr/testify
+	go get golang.org/x/lint/golint
