@@ -10,6 +10,6 @@ lint:
 	golint -set_exit_status `go list ./...`
 
 deps:
-	go install
+	go get -u
 	go install github.com/stretchr/testify@v1.8.4
 	go install golang.org/x/lint/golint@latest
