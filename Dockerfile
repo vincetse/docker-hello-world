@@ -4,7 +4,9 @@ FROM public.ecr.aws/docker/library/golang:1.20-alpine AS builder
 WORKDIR /go/src/github.com/infrastructure-as-code/docker-hello-world
 ENV GIN_MODE debug
 COPY .* * ./
-RUN apk update && \
+RUN \
+  uname -a ** \
+  apk update && \
 	apk upgrade && \
 	apk add \
     alpine-sdk \
