@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/infrastructure-as-code/docker-hello-world
 ENV GIN_MODE debug
 COPY .* * ./
 RUN \
-  uname -a ** \
+  uname -a && \
   apk update && \
 	apk upgrade && \
 	apk add \
