@@ -1,12 +1,12 @@
 FROM alpine AS qemu
-ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v4.0.0%2Bbalena2/qemu-4.0.0.balena2-arm.tar.gz
+ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v7.0.0%2Bbalena1/qemu-7.0.0.balena1-arm.tar.gz
 RUN apk add curl && curl -sL ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
-FROM arm32v6/golang:1.15-alpine AS builder
+FROM arm32v6/golang:1.20-alpine AS builder
 COPY --from=qemu qemu-arm-static /usr/bin
 WORKDIR /go/src/github.com/infrastructure-as-code/docker-hello-world
 ENV GIN_MODE debug
-COPY Makefile *.go ./
+COPY .* * ./
 RUN apk update
 RUN	apk upgrade
 RUN	apk add alpine-sdk
