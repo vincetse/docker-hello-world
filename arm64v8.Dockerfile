@@ -1,5 +1,5 @@
 FROM alpine AS qemu
-ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v7.0.0%2Bbalena1/qemu-7.0.0.balena1-arm.tar.gz
+ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v7.0.0%2Bbalena1/qemu-7.0.0.balena1-aarch64.tar.gz
 RUN apk add curl && curl -sL ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
 FROM arm64v8/golang:1.20-alpine AS builder
