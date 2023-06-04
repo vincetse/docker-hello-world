@@ -16,13 +16,28 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: amd64
-          - platform: arm32v6
-          - platform: arm64v8
+          - dockerfile: amd64.Dockerfile
+            platform: linux/amd64
+            goarch: amd64
+          - dockerfile: arm32v6.Dockerfile
+            platform: linux/arm/v6
+            goarch: arm
+          - dockerfile: arm64v8.Dockerfile
+            platform: linux/arm/v8
+            goarch: arm64
 
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
+
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '^1.20.0'
+
+      - name: Compile the app
+        run: |
+          export GOOS=linux GOARCH=${{ matrix.goarch }}
+          make all
 
       - name: Log in to the container registry
         uses: docker/login-action@v2
@@ -30,13 +45,3 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Build
-        run: |
-          docker build --rm \
-            --file ${{ matrix.platform }}.Dockerfile \
-            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} \
-            .
