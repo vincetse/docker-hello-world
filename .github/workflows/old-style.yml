@@ -19,12 +19,16 @@ jobs:
           - dockerfile: amd64.Dockerfile
             platform: linux/amd64
             goarch: amd64
+            gotest: GIN_MODE=debug go test
           - dockerfile: arm32v6.Dockerfile
             platform: linux/arm/v6
             goarch: arm
+            gotest:
           - dockerfile: arm64v8.Dockerfile
             platform: linux/arm/v8
             goarch: arm64
+            gotest:
+          - dockerfile: arm64v8.Dockerfile
 
     steps:
       - name: Check out the repo
@@ -37,7 +41,8 @@ jobs:
       - name: Compile the app
         run: |
           export GOOS=linux GOARCH=${{ matrix.goarch }}
-          make all
+          ${{ matrix.gotest }}
+          CGO_ENABLED=0 go build -a -o hello_world
 
       - name: Log in to the container registry
         uses: docker/login-action@v2
