@@ -56,7 +56,7 @@ jobs:
             dockerenv: -e QEMU_CPU=arm1176
           - platform: linux/arm/v8
             goarch: arm64
-            dockerenv: -e QEMU_CPU=cortex-a9
+            dockerenv: -e QEMU_CPU=cortex-a53
 
     steps:
       - name: Check out the repo
