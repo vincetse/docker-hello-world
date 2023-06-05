@@ -54,8 +54,13 @@ func setupRouter(routePrefix string) *gin.Engine {
 
 func main() {
 	optRoutePrefix := flag.String("route-prefix", "/", "Route prefix")
+  optVersion := flag.Bool("version", "Print version")
 	flag.Parse()
 
-	router := setupRouter(*optRoutePrefix)
-	_ = router.Run()
+  if *optVersion {
+    os.Stderr.WriteString(getVersion())
+  } else {
+  	router := setupRouter(*optRoutePrefix)
+	  _ = router.Run()
+  }
 }
