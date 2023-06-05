@@ -61,7 +61,7 @@ func main() {
 
 	if *optVersion {
 		fmt.Fprintf(os.Stderr, "Version: %s\nArch: %s",
-			getVersion,
+			getVersion(),
 			runtime.GOARCH,
 		)
 	} else {
