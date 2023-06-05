@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+  "fmt"
 	"net/http"
 	"os"
 	"runtime"
@@ -59,8 +60,10 @@ func main() {
 	flag.Parse()
 
 	if *optVersion {
-		os.Stderr.WriteString(getVersion())
-		os.Stderr.WriteString(runtime.GOARCH)
+    fmt.Fprintf(os.Stderr, "Version: %s\nArch: %s",
+      getVersion,
+      runtime.GOARCH
+    )
 	} else {
 		router := setupRouter(*optRoutePrefix)
 		_ = router.Run()
