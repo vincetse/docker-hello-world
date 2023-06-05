@@ -50,10 +50,13 @@ jobs:
         include:
           - platform: linux/amd64
             goarch: amd64
+            dockerenv:
           - platform: linux/arm/v6
             goarch: arm
+            dockerenv: -e QEMU_CPU=arm1176
           - platform: linux/arm/v8
             goarch: arm64
+            dockerenv: -e QEMU_CPU=arm1176
 
     steps:
       - name: Check out the repo
