@@ -62,7 +62,7 @@ func main() {
 	if *optVersion {
 		fmt.Fprintf(os.Stderr, "Version: %s\nArch: %s",
 			getVersion,
-			runtime.GOARCH
+			runtime.GOARCH,
 		)
 	} else {
 		router := setupRouter(*optRoutePrefix)
