@@ -85,8 +85,8 @@ jobs:
 
       - name: Build image
         run: |
-          docker build --rm \
-            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} \
+          docker build --rm --tty \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} \
             .
 
       - name: Run image
