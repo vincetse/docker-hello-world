@@ -4,7 +4,7 @@ import (
 	"flag"
 	"net/http"
 	"os"
-  "runtime"
+	"runtime"
 
 	"github.com/gin-gonic/gin"
 	ginprometheus "github.com/zsais/go-gin-prometheus"
@@ -60,7 +60,7 @@ func main() {
 
 	if *optVersion {
 		os.Stderr.WriteString(getVersion())
-    os.Stderr.WriteString(runtime.GOARCH)
+		os.Stderr.WriteString(runtime.GOARCH)
 	} else {
 		router := setupRouter(*optRoutePrefix)
 		_ = router.Run()
