@@ -194,7 +194,7 @@ jobs:
   test-run:
     runs-on: ubuntu-latest
     needs:
-      - build
+      - merge
     permissions:
       contents: read
       packages: read
