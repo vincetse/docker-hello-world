@@ -210,6 +210,9 @@ jobs:
             dockerenv: -e QEMU_CPU=cortex-a53
 
     steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
